@@ -31,7 +31,8 @@ export class EmpleadoresComponent implements OnInit {
 
   getEmpleadoresListar(): void {
     this.empleadorService.getEmpleadoresListar().subscribe((data) => {
-      this.empleadores = data;
+      const minId = Math.min(...data.map((emp) => emp.id_empleador || 0));
+      this.empleadores = data.filter((emp) => emp.id_empleador !== minId);
     });
   }
 
@@ -44,7 +45,8 @@ export class EmpleadoresComponent implements OnInit {
 
   buscarEmpleadores(): void {
     this.empleadorService.searchEmpleadores(this.filtro).subscribe((data) => {
-      this.empleadores = data;
+      const minId = Math.min(...data.map((emp) => emp.id_empleador || 0));
+      this.empleadores = data.filter((emp) => emp.id_empleador !== minId);
     });
   }
 

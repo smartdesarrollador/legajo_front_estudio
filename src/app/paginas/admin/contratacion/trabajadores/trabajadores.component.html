@@ -101,7 +101,11 @@
               <td>{{ trabajador.cargo?.cargo || "No asignado" }}</td>
               <td>{{ trabajador.fecha_ingreso | date : "dd/MM/yyyy" }}</td>
               <td>
-                {{ trabajador.fecha_baja | date : "dd/MM/yyyy" || "N/A" }}
+                {{
+                  trabajador.fecha_baja
+                    ? (trabajador.fecha_baja | date : "dd/MM/yyyy")
+                    : "N/A"
+                }}
               </td>
               <td>
                 <span
